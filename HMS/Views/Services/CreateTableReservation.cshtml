@@ -1,0 +1,43 @@
+﻿@model HMS.Models.Service
+
+@{
+    ViewData["Title"] = "CreateTableReservation";
+}
+
+<h1>Create Service Table Reservation</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTableReservation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Room_NO" class="control-label"></label>
+                <input asp-for="Room_NO" class="form-control" />
+                <span asp-validation-for="Room_NO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label"></label>
+                <label class="form-control" > Cost for one Table : <strong>2000 $</strong></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Table_No" class="control-label"></label>
+                <input asp-for="Table_No" class="form-control" />
+                <span asp-validation-for="Table_No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,95 @@
+﻿@model HMS.Models.Service
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service_Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service_Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Room_NO)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Room_NO)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service_Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service_Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        @if (Model.Service_Type == "Foods")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.food.FoodName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.food.FoodName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.food.image)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.food.image)
+            </dd>
+        }
+        @if (Model.Service_Type == "Drinks")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.drink.DrinkName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.drink.DrinkName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.drink.image)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.drink.image)
+            </dd>
+        }
+        @if (Model.Service_Type == "Table Reservation")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.UserName)
+            </dd>
+        }
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

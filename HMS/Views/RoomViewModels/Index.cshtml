@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HMS.Models.RoomViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+ @if (!User.IsInRole("Customer"))
+  {
+    <p>
+       <a asp-action="Create">Create New</a>
+    </p>
+  }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Charges)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.image)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Charges)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <img src="~/images/@Html.DisplayFor(modelItem => item.image)" class="img-thumbnail"
+                             style="width:100px;height:100px;" />
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> <strong> | </strong>
+                        <a asp-action="Reservation" asp-route-id="@item.Id">Reservation</a>
+
+                        @if (!User.IsInRole("Customer"))
+                        {
+                            <strong> | </strong>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <strong> | </strong>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,64 @@
+﻿@model HMS.Models.RoomViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>RoomViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="number" class="control-label"></label>
+                <input asp-for="number" class="form-control" />
+                <span asp-validation-for="number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-control">
+                <select asp-for="Type">
+                    <option value="Single Bed">Select Room Type</option>
+                    <option value="Single Bed">Single Bed</option>
+                    <option value="Double Bed">Double Bed</option>
+                    <option value="Wifi">Wifi</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Luxury">Luxury</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charges" class="control-label"></label>
+                <input asp-for="Charges" class="form-control" />
+                <span asp-validation-for="Charges" class="text-danger"></span>
+            </div>
+            <div class="col-sm-10">
+                <img src="~/images/@Model.image" class="img-thumbnail"
+                     style="width:250px;height:250px;" />
+            </div>
+            <input type="text" style="display: none;" name="imgName" value="@Model.image">
+            <div class="form-group form-control-file">
+                <label asp-for="image" class="control-label"></label>
+                <input type="file" name="Fileimage" asp-for="image" class="form-control" />
+                <span asp-validation-for="image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

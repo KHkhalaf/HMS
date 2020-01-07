@@ -1,0 +1,64 @@
+﻿@model IEnumerable<HMS.Models.Reservation>
+
+@{
+    ViewData["Title"] = "returnReservationForCustomer";
+}
+
+<h1>This Your Rooms That's you had reserved them</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Charges)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.image)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Charges)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOut)
+            </td>
+            <td>
+                <img src="~/images/@Html.DisplayFor(modelItem => item.Room.image)" class="img-thumbnail"
+                     style="width:150px;height:150px;" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
