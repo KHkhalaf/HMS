@@ -23,7 +23,9 @@ namespace HMS.Controllers
             userMng = userManager;
         }
 
-        // GET: Services
+        // GET: Services 
+        // Return View contains the orders that ordered by customers
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles ="Admin, Staff")]
         public async Task<IActionResult> Index()
         {
@@ -35,12 +37,16 @@ namespace HMS.Controllers
         }
 
         // GET: Services/CreateDrinkOrder
+        // return view for Create Drink Order by customer
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> CreateDrinkOrder()
         {
             return View(await _context.Drinks.ToListAsync());
         }
 
         // POST: Services/AddDrink_returnOrdersById/4
+        // get the inputs from view for Create Drink Order by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDrinkOrder(int Id,string RoomNo)
@@ -65,12 +71,16 @@ namespace HMS.Controllers
         }
 
         // GET: Services/CreateTableReservation
+        // return view for Create Drink Food by customer
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> CreateFoodOrder()
         {
             return View(await _context.Foods.ToListAsync());
         }
 
-        //// POST: Services/AddFood_returnOrdersById/4      
+        //// POST: Services/AddFood_returnOrdersById/4 
+        // get the inputs from view for Create Food Order by customer   
+        // written By khalil Email: bestmind11111@gmail.com  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateFoodOrder(int Id,string RoomNo)
@@ -94,6 +104,9 @@ namespace HMS.Controllers
             return RedirectToAction(nameof(ReturnServicesForCustomers));
         }
 
+        // Get: Services/ReturnServicesForCustomers
+        // return all the orders had ordered by customer
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> ReturnServicesForCustomers()
         {
             var currentUser = await userMng.GetUserAsync(HttpContext.User);
@@ -105,6 +118,8 @@ namespace HMS.Controllers
         }
 
         // GET: Services/Details/5
+        // return Details for a order
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -126,6 +141,8 @@ namespace HMS.Controllers
         }
 
 
+        // return view for Create Table Reservation by customer
+        // written By khalil Email: bestmind11111@gmail.com
         public IActionResult CreateTableReservation()
         {
             return View();
@@ -134,6 +151,8 @@ namespace HMS.Controllers
         // POST: Services/CreateTableReservation
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs for Create Table Reservation has created by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTableReservation(Service service)
@@ -153,6 +172,8 @@ namespace HMS.Controllers
         }
 
         // GET: Services/CreateCleanClothes
+        // return view for Create Clean Clothes order by customer
+        // written By khalil Email: bestmind11111@gmail.com
         public IActionResult CreateCleanClothes()
         {
             return View();
@@ -161,6 +182,8 @@ namespace HMS.Controllers
         // POST: Services/CreateCleanClothes
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs for Create Clean Clothes has created by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCleanClothes(Service service)
@@ -189,6 +212,8 @@ namespace HMS.Controllers
         // POST: Services/CreateCleanRoom
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs for Create Clean Room has created by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCleanRoom(Service service)
@@ -223,6 +248,9 @@ namespace HMS.Controllers
             return View(Service);
         }
 
+        // POST: Services/Edit/{id}
+        // get the inputs for edit an order had created by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Service_Type,Room_NO,Status,Service_Date,Description,Cost,Table_No")] Service service)
@@ -284,7 +312,8 @@ namespace HMS.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        // Check if service (order) is exists
+        // written By khalil Email: bestmind11111@gmail.com
         private bool ServiceExists(int id)
         {
             return _context.Services.Any(e => e.Id == id);

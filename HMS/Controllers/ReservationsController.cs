@@ -25,6 +25,8 @@ namespace HMS.Controllers
         }
 
         // GET: Reservations
+        // return view contains all reservations that had reservated by customer
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> Index()
         {
@@ -35,6 +37,8 @@ namespace HMS.Controllers
         }
 
         // GET: Reservations/returnReservationForCustomer
+        // return Reservations had reservated For Customer
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> returnReservationForCustomer()
         {
             var currentUser = await userMng.GetUserAsync(HttpContext.User);
@@ -45,6 +49,7 @@ namespace HMS.Controllers
         }
 
         // GET: Reservations/Details/5
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -64,6 +69,8 @@ namespace HMS.Controllers
         }
 
         // GET: Reservations/Create
+        // return view for create a reservation room
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         public IActionResult Create()
         {
@@ -73,6 +80,8 @@ namespace HMS.Controllers
         // POST: Reservations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for create a reservation room
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -109,6 +118,8 @@ namespace HMS.Controllers
         // POST: Reservations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for Edit a reservation room
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -143,6 +154,8 @@ namespace HMS.Controllers
         }
 
         // GET: Reservations/Delete/5
+        // return view for delete a reservation by id
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -163,6 +176,8 @@ namespace HMS.Controllers
         }
 
         // POST: Reservations/Delete/5
+        // delete a reservation by id
+        // written By khalil Email: bestmind11111@gmail.com
         [Authorize(Roles = "Admin, Staff")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

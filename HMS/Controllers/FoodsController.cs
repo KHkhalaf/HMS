@@ -27,12 +27,16 @@ namespace HMS.Controllers
         }
 
         // GET: Foods
+        // return list of foods  by owner
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Index()
         {
             return View(await _context.Foods.ToListAsync());
         }
 
         // GET: Foods/Details/5
+        // get details of a food  by owner
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,6 +55,8 @@ namespace HMS.Controllers
         }
 
         // GET: Foods/Create
+        // return view for create a food by owner
+        // written By khalil Email: bestmind11111@gmail.com
         public IActionResult Create()
         {
             return View();
@@ -59,6 +65,8 @@ namespace HMS.Controllers
         // POST: Foods/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get inputs from view for create a food by owner
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Food food, IFormFile Fileimage)
@@ -81,6 +89,8 @@ namespace HMS.Controllers
         }
 
         // GET: Foods/Edit/5
+        // return view for edit a food  by owner
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,6 +109,8 @@ namespace HMS.Controllers
         // POST: Foods/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get inputs from view for update a food  by owner
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,Food food, IFormFile Fileimage, string imgName)
@@ -144,6 +156,8 @@ namespace HMS.Controllers
         }
 
         // GET: Foods/Delete/5
+        // return view for delete a food by {id}
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -162,6 +176,8 @@ namespace HMS.Controllers
         }
 
         // POST: Foods/Delete/5
+        // delete a food by {id}
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -28,6 +28,7 @@ namespace HMS.Controllers
         }
         [Authorize(Roles ="Admin")]
         // GET: Accounts for Staffs
+        // written By khalil Email: bestmind11111@gmail.com
         public IActionResult Index()
         {
             return View(GetUserByRole("Staff"));
@@ -35,6 +36,7 @@ namespace HMS.Controllers
 
         [Authorize(Roles = "Admin, Staff")]
         // GET: Accounts for Customers
+        // written By khalil Email: bestmind11111@gmail.com
         public IActionResult Customers()
         {
             return View(GetUserByRole("Customer"));
@@ -42,6 +44,8 @@ namespace HMS.Controllers
 
 
         // GET: Accounts/DisplayUserProfile/
+        // return view for display a profile
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> DisplayUserProfile()
         {
             var Account = await _context.Users
@@ -55,6 +59,8 @@ namespace HMS.Controllers
         }
 
         // GET: Accounts/Details/5
+        // get details profile
+        // written By khalil Email: bestmind11111@gmail.com 
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -74,6 +80,8 @@ namespace HMS.Controllers
 
         [AllowAnonymous]
         // GET: Accounts/Create
+        // get viwe for create (add) a staff by owner
+        // written By khalil Email: bestmind11111@gmail.com 
         public IActionResult Create()
         {
             return View();
@@ -82,6 +90,8 @@ namespace HMS.Controllers
         // POST: Accounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for create a account staff by owner
+        // written By khalil Email: bestmind11111@gmail.com  
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -101,6 +111,8 @@ namespace HMS.Controllers
         }
 
         // GET: Accounts/Edit/5
+        // return view for edit a profile by user
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -119,6 +131,8 @@ namespace HMS.Controllers
         // POST: Accounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for update a account by user
+        // written By khalil Email: bestmind11111@gmail.com 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,Account account)
@@ -151,6 +165,8 @@ namespace HMS.Controllers
         }
 
         // GET: Accounts/Delete/5
+        // return view for delete a account by owner
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -168,6 +184,8 @@ namespace HMS.Controllers
         }
 
         // POST: Accounts/Delete/5
+        // get the inputs (id) for delete a account by owner
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -183,6 +201,8 @@ namespace HMS.Controllers
         }
 
         // GET: Accounts/Register
+        // return view for create a account customer 
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         public IActionResult Register()
         {
@@ -192,6 +212,8 @@ namespace HMS.Controllers
         // POST: Accounts/Register
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for create a account customer 
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -222,6 +244,8 @@ namespace HMS.Controllers
         // POST: Accounts/Register
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // create an invoice for customer by {id}
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> CreateInvoiceById(int Id)
         {
             var Account = await _context.Users
@@ -256,6 +280,8 @@ namespace HMS.Controllers
         }
 
         // GET: Accounts/Login
+        // return view for login action
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         public IActionResult Login()
         {
@@ -265,6 +291,8 @@ namespace HMS.Controllers
         // POST: Accounts/Login
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs for login a user
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         [HttpPost, ActionName("Login")]
         [ValidateAntiForgeryToken]
@@ -281,13 +309,16 @@ namespace HMS.Controllers
             return View(Account);
         }
 
-        // Logout User
+        // return view for logout User
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> LogOut()
         {
             await SignMng.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
+        // get list of users (staffs , customers) by role
+        // written By khalil Email: bestmind11111@gmail.com
         private List<Account> GetUserByRole(string RoleName)
         {
             var listStaffs = _context.Users.ToList()

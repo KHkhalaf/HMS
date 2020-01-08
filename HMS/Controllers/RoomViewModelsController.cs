@@ -27,6 +27,7 @@ namespace HMS.Controllers
         }
 
         // GET: RoomViewModels
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
@@ -35,6 +36,7 @@ namespace HMS.Controllers
         }
 
         // GET: RoomViewModels/Details/5
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
@@ -62,6 +64,8 @@ namespace HMS.Controllers
         // POST: RoomViewModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for create room by owner
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RoomViewModel roomViewModel,IFormFile Fileimage)
@@ -102,6 +106,8 @@ namespace HMS.Controllers
         // POST: RoomViewModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // get the inputs from view for edit room by owner
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, RoomViewModel roomViewModel, IFormFile Fileimage, string imgName)
@@ -148,6 +154,8 @@ namespace HMS.Controllers
         }
 
         // GET: RoomViewModels/Delete/5
+        // return view for delete a room by id
+        // written By khalil Email: bestmind11111@gmail.com
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -166,6 +174,7 @@ namespace HMS.Controllers
         }
 
         // POST: RoomViewModels/Delete/5
+        // written By khalil Email: bestmind11111@gmail.com
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -177,6 +186,8 @@ namespace HMS.Controllers
         }
 
         // GET: RoomViewModels/Details/5
+        // return a room details 
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         public async Task<IActionResult> Reservation(int? id)
         {
@@ -195,6 +206,8 @@ namespace HMS.Controllers
             return View(roomViewModel);
         }
         // POST: RoomViewModels/Reservation/5
+        // get inputs from view that had entered by customer 
+        // written By khalil Email: bestmind11111@gmail.com
         [AllowAnonymous]
         [HttpPost,ActionName("Reservation")]
         [ValidateAntiForgeryToken]
