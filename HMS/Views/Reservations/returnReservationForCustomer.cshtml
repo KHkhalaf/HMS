@@ -7,7 +7,29 @@
 <h1>This Your Rooms That's you had reserved them</h1>
 
 
-<table class="table">
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div style="width:350px; background-color:#fcfcfc; padding:10px; margin-top:20px;">
+                <img src="~/images/@Html.DisplayFor(modelItem => item.Room.image)" class="img-thumbnail"
+                     style="width:330px;height:250px;" /><br />
+                @Html.DisplayFor(modelItem => item.Room.number)<br />
+                @Html.DisplayFor(modelItem => item.Room.Description)<br />
+                @Html.DisplayFor(modelItem => item.Room.Type)<br />
+                <strong> @Html.DisplayFor(modelItem => item.Room.Charges) $</strong><br />
+
+                DateIn <strong>:</strong> @Html.DisplayFor(modelItem => item.DateIn)<br /><br />
+                DateOut <strong>:</strong> @Html.DisplayFor(modelItem => item.DateOut)<br />
+</div>
+
+        </div>
+    }
+</div>
+
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -34,31 +56,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.Charges)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOut)
-            </td>
-            <td>
-                <img src="~/images/@Html.DisplayFor(modelItem => item.Room.image)" class="img-thumbnail"
-                     style="width:150px;height:150px;" />
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Charges)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOut)
+                </td>
+                <td>
+                    <img src="~/images/@Html.DisplayFor(modelItem => item.Room.image)" class="img-thumbnail"
+                         style="width:150px;height:150px;" />
+                </td>
+            </tr>
+        }
     </tbody>
-</table>
+</table>*@

@@ -4,45 +4,34 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Drinks</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DrinkName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.image)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DrinkName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div style="width:350px; background-color:#fcfcfc; padding:10px; margin-top:20px;">
                 <img src="~/images/@Html.DisplayFor(modelItem => item.image)" class="img-thumbnail"
-                     style="width:50px;height:50px;" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                     style="width:330px;height:250px;" /><br />
+                @Html.DisplayFor(modelItem => item.DrinkName)<br />
+                <strong> @Html.DisplayFor(modelItem => item.Price) $</strong><br />
+
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> <strong> | </strong>
+                <a asp-action="Reservation" asp-route-id="@item.Id">Reservation</a>
+
+                @if (!User.IsInRole("Customer"))
+                {
+                    <strong> | </strong>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <strong> | </strong>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </div>
+
+        </div>
+    }
+</div>

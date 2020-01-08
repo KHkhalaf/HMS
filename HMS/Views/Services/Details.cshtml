@@ -64,7 +64,8 @@
                 @Html.DisplayNameFor(model => model.food.image)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.food.image)
+                <img src="~/images/@Html.DisplayFor(model => model.food.image)" class="img-thumbnail"
+                     style="width:250px;height:250px;" />
             </dd>
         }
         @if (Model.Service_Type == "Drinks")
@@ -79,7 +80,8 @@
                 @Html.DisplayNameFor(model => model.drink.image)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.drink.image)
+                <img src="~/images/@Html.DisplayFor(model => model.drink.image)" class="img-thumbnail"
+                     style="width:250px;height:250px;" />
             </dd>
         }
         @if (Model.Service_Type == "Table Reservation")
@@ -94,6 +96,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a> |
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a asp-action="ReturnServicesForCustomers">Back to List</a> 
 </div>
