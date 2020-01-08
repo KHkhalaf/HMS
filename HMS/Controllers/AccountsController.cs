@@ -14,47 +14,47 @@ using Microsoft.AspNetCore.Authorization;
 namespace HMS.Controllers
 {
     [Authorize]
-    public class AccountViewModelsController : Controller
+    public class AccountsController : Controller
     {
-        private UserManager<AccountViewModel> UserMng { get; set; } 
-        private SignInManager<AccountViewModel> SignMng { get; set; }
+        private UserManager<Account> UserMng { get; set; } 
+        private SignInManager<Account> SignMng { get; set; }
         private ApplicationDbContext _context { get; set; }
-        public AccountViewModelsController(ApplicationDbContext applicationDbContext,
-            UserManager<AccountViewModel> UserMng, SignInManager<AccountViewModel> SignMng)
+        public AccountsController(ApplicationDbContext applicationDbContext,
+            UserManager<Account> UserMng, SignInManager<Account> SignMng)
         {
             this.UserMng = UserMng;
             this.SignMng = SignMng;
             this._context = applicationDbContext;
         }
         [Authorize(Roles ="Admin")]
-        // GET: AccountViewModels for Staffs
+        // GET: Accounts for Staffs
         public IActionResult Index()
         {
             return View(GetUserByRole("Staff"));
         }
 
         [Authorize(Roles = "Admin, Staff")]
-        // GET: AccountViewModels for Customers
+        // GET: Accounts for Customers
         public IActionResult Customers()
         {
             return View(GetUserByRole("Customer"));
         }
 
 
-        // GET: AccountViewModels/DisplayUserProfile/
+        // GET: Accounts/DisplayUserProfile/
         public async Task<IActionResult> DisplayUserProfile()
         {
-            var accountViewModel = await _context.Users
+            var Account = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id == (UserMng.GetUserAsync(HttpContext.User).Result).Id);
-            if (accountViewModel == null)
+            if (Account == null)
             {
                 return NotFound();
             }
 
-            return View(accountViewModel);
+            return View(Account);
         }
 
-        // GET: AccountViewModels/Details/5
+        // GET: Accounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -62,45 +62,45 @@ namespace HMS.Controllers
                 return NotFound();
             }
 
-            var accountViewModel = await _context.Users
+            var Account = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (accountViewModel == null)
+            if (Account == null)
             {
                 return NotFound();
             }
 
-            return View(accountViewModel);
+            return View(Account);
         }
 
         [AllowAnonymous]
-        // GET: AccountViewModels/Create
+        // GET: Accounts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AccountViewModels/Create
+        // POST: Accounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AccountViewModel accountViewModel)
+        public async Task<IActionResult> Create(Account Account)
         {
             var account = await UserMng
-                .FindByEmailAsync(accountViewModel.Email);
+                .FindByEmailAsync(Account.Email);
             if (ModelState.IsValid && account == null)
             {
-                var result = await UserMng.CreateAsync(accountViewModel);
-                var result1 = await UserMng.AddToRoleAsync(accountViewModel, "Staff");
+                var result = await UserMng.CreateAsync(Account);
+                var result1 = await UserMng.AddToRoleAsync(Account, "Staff");
 
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.EmailExist = "This Email is Exist ...";
-            return View(accountViewModel);
+            return View(Account);
         }
 
-        // GET: AccountViewModels/Edit/5
+        // GET: Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -108,22 +108,22 @@ namespace HMS.Controllers
                 return NotFound();
             }
 
-            var accountViewModel = await UserMng.FindByIdAsync(id.ToString());
-            if (accountViewModel == null)
+            var Account = await UserMng.FindByIdAsync(id.ToString());
+            if (Account == null)
             {
                 return NotFound();
             }
-            return View(accountViewModel);
+            return View(Account);
         }
 
-        // POST: AccountViewModels/Edit/5
+        // POST: Accounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,AccountViewModel accountViewModel)
+        public async Task<IActionResult> Edit(int id,Account account)
         {
-            if (id != accountViewModel.Id)
+            if (id != account.Id)
             {
                 return NotFound();
             }
@@ -132,11 +132,11 @@ namespace HMS.Controllers
             {
                 try
                 {
-                    await UserMng.UpdateAsync(accountViewModel);
+                    await UserMng.UpdateAsync(account);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AccountViewModelExists(accountViewModel.Id))
+                    if (!AccountExists(account.Id))
                     {
                         return NotFound();
                     }
@@ -147,10 +147,10 @@ namespace HMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(accountViewModel);
+            return View(account);
         }
 
-        // GET: AccountViewModels/Delete/5
+        // GET: Accounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -158,86 +158,127 @@ namespace HMS.Controllers
                 return NotFound();
             }
 
-            var accountViewModel = await UserMng.FindByIdAsync(id.ToString());
-            if (accountViewModel == null)
+            var Account = await UserMng.FindByIdAsync(id.ToString());
+            if (Account == null)
             {
                 return NotFound();
             }
 
-            return View(accountViewModel);
+            return View(Account);
         }
 
-        // POST: AccountViewModels/Delete/5
+        // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var accountViewModel = await UserMng.FindByIdAsync(id.ToString());
-            await UserMng.DeleteAsync(accountViewModel);
+            var Account = await UserMng.FindByIdAsync(id.ToString());
+            await UserMng.DeleteAsync(Account);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AccountViewModelExists(int id)
+        private bool AccountExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
 
-        // GET: LoginViewModels/Register
+        // GET: Accounts/Register
         [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
-        // POST: AccountViewModels/Register
+        // POST: Accounts/Register
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(AccountViewModel accountViewModel)
+        public async Task<IActionResult> Register(Account Account)
         {
             var account = await UserMng
-                .FindByEmailAsync(accountViewModel.Email);
+                .FindByEmailAsync(Account.Email);
             if (ModelState.IsValid && account == null)
             {
-                var result = await UserMng.CreateAsync(accountViewModel);
-                var result1 = await UserMng.AddToRoleAsync(accountViewModel, "Customer");
+                var result = await UserMng.CreateAsync(Account);
+                var result1 = await UserMng.AddToRoleAsync(Account, "Customer");
 
                 if (result.Succeeded && result1.Succeeded)
                 {
-                    await SignMng.SignInAsync(accountViewModel, isPersistent: false);
+                    await SignMng.SignInAsync(Account, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
+                else
+                {
+                    ViewBag.UserNameDublicated = "Your UserName is Dublicated ...";
+                    return View(Account);
+                }
             }
             ViewBag.EmailExist = "This Email is Exist ...";
-            return View(accountViewModel);
+            return View(Account);
+        }
+        [Authorize(Roles ="Customer")]
+        // POST: Accounts/Register
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public async Task<IActionResult> CreateInvoiceById(int Id)
+        {
+            var Account = await _context.Users
+                .FirstOrDefaultAsync(m => m.Id == (UserMng.GetUserAsync(HttpContext.User).Result).Id);
+            var userRole = _context.UserRoles.Where(ur => ur.UserId == Account.Id);
+            var role = _context.Roles.Where(r => r.Id == userRole.ToList()[0].RoleId);
+            if (role.ToList()[0].Name == "Customer")
+                Id = Account.Id;
+            var invoice = new InvoiceViewModel();
+            var Customer = await UserMng
+                .FindByIdAsync(Id.ToString());
+            var services = await _context.Set<Service>()
+                .Include(s => s.food)
+                .Include(s => s.drink)
+                .Include(s => s.User).Where(s => s.User.Id == Customer.Id)
+                .ToListAsync();
+            var rooms = await _context.Set<Reservation>()
+                .Include(r => r.Customer)
+                .Include(r => r.Room).Where(r => r.Customer.Id == Customer.Id)
+                .ToListAsync();
+            int cost = 0;
+            for(int i = 0; i < services.Count; i++)
+            {
+                cost += services[i].Cost;
+            }
+            invoice.Customer = Customer;
+            invoice.Services = services;
+            invoice.Rooms = rooms;
+            invoice.Cost = cost;
+
+            return View(invoice);
         }
 
-        // GET: LoginViewModels/Login
+        // GET: Accounts/Login
         [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: AccountViewModels/Login
+        // POST: Accounts/Login
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [AllowAnonymous]
         [HttpPost, ActionName("Login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AccountViewModel accountViewModel)
+        public async Task<IActionResult> Login(Account Account)
         {
             var account = await _context.Users
-                .FirstOrDefaultAsync(m => m.Email == accountViewModel.Email);
-            if (account != null && account.Password == accountViewModel.Password)
+                .FirstOrDefaultAsync(m => m.Email == Account.Email);
+            if (account != null && account.Password == Account.Password)
             {
                 await SignMng.SignInAsync(account, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.InputValid = "Check Your Email or Password ...";
-            return View(accountViewModel);
+            return View(Account);
         }
 
         // Logout User
@@ -247,7 +288,7 @@ namespace HMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private List<AccountViewModel> GetUserByRole(string RoleName)
+        private List<Account> GetUserByRole(string RoleName)
         {
             var listStaffs = _context.Users.ToList()
                                 .Join(_context.UserRoles.ToList(), u => u.Id, ur => ur.UserId, (u, ur) => new { u, ur })
@@ -263,10 +304,10 @@ namespace HMS.Controllers
                                     normalizedUsername = m.urr.u.NormalizedUserName,
                                     normalizedEmail = m.urr.u.NormalizedEmail
                                 });
-            var _customers = new List<AccountViewModel>();
+            var _customers = new List<Account>();
             foreach (var item in listStaffs.ToList())
             {
-                var account = new AccountViewModel();
+                var account = new Account();
                 account.Id = item.userId;
                 account.UserName = item.userName;
                 account.Email = item.Email;

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<AccountViewModel,AppRole,int>
+    public class ApplicationDbContext : IdentityDbContext<Account,AppRole,int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,5 +20,6 @@ namespace HMS.Data
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<Drink> Drinks { get; set; }
+        public virtual DbSet<InvoiceViewModel> Invoices { get; set; }
     }
 }

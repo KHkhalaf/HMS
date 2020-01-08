@@ -16,9 +16,9 @@ namespace HMS.Controllers
     public class ReservationsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<AccountViewModel> userMng;
+        private readonly UserManager<Account> userMng;
 
-        public ReservationsController(ApplicationDbContext context, UserManager<AccountViewModel> userManager)
+        public ReservationsController(ApplicationDbContext context, UserManager<Account> userManager)
         {
             _context = context;
             userMng = userManager;

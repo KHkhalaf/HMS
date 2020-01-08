@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<AccountViewModel> SignInManager
-@inject UserManager<AccountViewModel> UserManager
+@inject SignInManager<Account> SignInManager
+@inject UserManager<Account> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -8,47 +8,53 @@
         @if (!User.IsInRole("Customer"))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="AccountViewModels" asp-action="Customers">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Customers">
                     <i class="fa fa-user"></i> Customers
                 </a>
             </li>
             @if (User.IsInRole("Admin"))
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="AccountViewModels" asp-action="Index">Staffs</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Index">Staffs</a>
                 </li>
             }
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Reservations" asp-action="Index">Reservations</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  href="#">
-                        Add Services
-                    </a>
-                    <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-dark" asp-controller="Foods" asp-action="Index">Add Foods </a>
-                        <a class="dropdown-item text-dark" asp-controller="Drinks" asp-action="Index">Add Drinks</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Orders</a>
-                </li>
-            }
-
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="RoomViewModels" asp-action="Index">Rooms</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Reservations" asp-action="Index">Reservations</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-dark dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                    Our Services
+                <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                    Add Services
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateFoodOrder"> Foods </a>
-                    <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateDrinkOrder">Drinks</a>
-                    <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateCleanRoom">Clean Room</a>
-                    <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateCleanClothes">Clean Clothes</a>
-                    <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateTableReservation">Table Reservation</a>
+                <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item text-dark" asp-controller="Foods" asp-action="Index">Add Foods </a>
+                    <a class="dropdown-item text-dark" asp-controller="Drinks" asp-action="Index">Add Drinks</a>
                 </div>
             </li>
-        </ul>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Orders</a>
+            </li>
+        }
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="RoomViewModels" asp-action="Index">Rooms</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                Our Services
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateFoodOrder"> Foods </a>
+                <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateDrinkOrder">Drinks</a>
+                <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateCleanRoom">Clean Room</a>
+                <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateCleanClothes">Clean Clothes</a>
+                <a class="dropdown-item text-dark" asp-controller="Services" asp-action="CreateTableReservation">Table Reservation</a>
+            </div>
+        </li>
+        @if (User.IsInRole("Customer"))
+         {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Accounts" asp-action="CreateInvoiceById">Create Invoice</a>
+            </li>
+         }
+    </ul>
 }

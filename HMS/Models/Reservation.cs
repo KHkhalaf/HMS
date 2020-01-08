@@ -17,7 +17,7 @@ namespace HMS.Models
         public DateTime DateOut { get; set; }
         public int Customer_id { get; set; }
         public int Room_id { get; set; }
-        public virtual AccountViewModel Customer{get;set; }
+        public virtual Account Customer{get;set; }
         public virtual RoomViewModel Room { get; set; }
     }
 }

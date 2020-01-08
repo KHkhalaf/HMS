@@ -1,21 +1,26 @@
-﻿@model HMS.Models.AccountViewModel
+﻿@model HMS.Models.Account
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Register";
 }
 
-<h1>Create</h1>
+<h1>Register</h1>
 
 <h4>AccountViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
                 <input asp-for="UserName" class="form-control" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 text-danger">
+                        @ViewBag.UserNameDublicated
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -57,6 +62,9 @@
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

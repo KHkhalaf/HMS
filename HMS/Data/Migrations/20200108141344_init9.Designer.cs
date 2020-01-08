@@ -4,14 +4,16 @@ using HMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200108141344_init9")]
+    partial class init9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,9 +215,6 @@ namespace HMS.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InvoiceViewModelId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
@@ -225,8 +224,6 @@ namespace HMS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("InvoiceViewModelId");
 
                     b.HasIndex("RoomId");
 
@@ -246,6 +243,9 @@ namespace HMS.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("InvoiceViewModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -261,6 +261,8 @@ namespace HMS.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InvoiceViewModelId");
 
                     b.ToTable("Rooms");
                 });
@@ -433,13 +435,16 @@ namespace HMS.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("HMS.Models.InvoiceViewModel", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("InvoiceViewModelId");
-
                     b.HasOne("HMS.Models.RoomViewModel", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId");
+                });
+
+            modelBuilder.Entity("HMS.Models.RoomViewModel", b =>
+                {
+                    b.HasOne("HMS.Models.InvoiceViewModel", null)
+                        .WithMany("Rooms")
+                        .HasForeignKey("InvoiceViewModelId");
                 });
 
             modelBuilder.Entity("HMS.Models.Service", b =>

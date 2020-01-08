@@ -50,7 +50,10 @@
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a> |
+                        @if (model.Status != "DONE")
+                         {
+                            <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a><strong> | </strong>
+                         }
                         <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Details</a>
                     </td>
                 </tr>
@@ -99,7 +102,10 @@
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a> |
+                        @if (model.Status != "DONE")
+                        {
+                            <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a><strong> | </strong>
+                        }
                         <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Details</a>
                     </td>
                 </tr>
@@ -149,8 +155,11 @@
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s=>s.Id == model.Id).Id">Delete</a> |
-                        <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s=>s.Id == model.Id).Id">Details</a>
+                        @if (model.Status != "DONE")
+                        {
+                            <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a><strong> | </strong>
+                        }
+                        <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Details</a>
                     </td>
                 </tr>
             </tbody>
@@ -198,7 +207,10 @@
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a> |
+                        @if (model.Status != "DONE")
+                        {
+                            <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a><strong> | </strong>
+                        }
                         <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Details</a>
                     </td>
                 </tr>
@@ -248,8 +260,11 @@
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s=>s.Id == model.Id).Id">Delete</a> |
-                        <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s=>s.Id == model.Id).Id">Details</a>
+                        @if (model.Status != "DONE")
+                        {
+                            <a asp-action="Delete" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Delete</a><strong> | </strong>
+                        }
+                        <a asp-action="Details" asp-route-id="@Model.FirstOrDefault(s => s.Id == model.Id).Id">Details</a>
                     </td>
                 </tr>
             </tbody>

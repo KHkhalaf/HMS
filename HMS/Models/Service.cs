@@ -26,7 +26,7 @@ namespace HMS.Models
         [Required]
         [DisplayName("Table NO")]
         public int Table_No { get; set; }
-        public virtual AccountViewModel User { get; set; }
+        public virtual Account User { get; set; }
         public virtual Food food { get; set; }
         public virtual Drink drink { get; set; }
     }

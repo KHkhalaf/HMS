@@ -1,0 +1,338 @@
+﻿@model HMS.Models.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "CreateInvoiceById";
+}
+<h3>This Invoice for Customer</h3>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                PhoneNumber
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Customer.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Customer.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Customer.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Customer.City)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@if(@Model.Rooms.Count > 0){
+    <br />
+    <h3>This is his Reservations of Rooms</h3>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].Room.number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].Room.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].Room.Charges)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].DateIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].DateOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms[0].Room.image)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Rooms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.Charges)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOut)
+                    </td>
+                    <td>
+                        <img src="~/images/@Html.DisplayFor(modelItem => item.Room.image)" class="img-thumbnail"
+                             style="width:150px;height:150px;" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Services.Count > 0)
+{
+    <h3><strong>This is his services</strong> </h3>
+    <br />
+
+    @if (Model.Services.Where(s => s.Service_Type == "Table Reservation").ToList().Count > 0)
+    {
+        <h3>Table Reservation</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Room_NO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Date)
+                    </th>
+                    <th>
+                </tr>
+            </thead>
+            @foreach (var model in Model.Services.Where(s => s.Service_Type == "Table Reservation"))
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Room_NO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Date)
+                        </td>
+                        <td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+
+    @if (Model.Services.Where(s => s.Service_Type == "Clean Clothes").ToList().Count > 0)
+    {
+        <h3>Clean Clothes</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Room_NO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Date)
+                    </th>
+                    <th>
+                </tr>
+            </thead>
+            @foreach (var model in Model.Services.Where(s => s.Service_Type == "Clean Clothes"))
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Room_NO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Date)
+                        </td>
+                        <td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+
+    @if (Model.Services.Where(s => s.Service_Type == "Clean Room").ToList().Count > 0)
+    {
+
+        <h3>Clean Room</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Room_NO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Date)
+                    </th>
+                    <th>
+                </tr>
+            </thead>
+            @foreach (var model in Model.Services.Where(s => s.Service_Type == "Clean Room"))
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Room_NO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Date)
+                        </td>
+                        <td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+
+    @if (Model.Services.Where(s => s.Service_Type == "Drinks").ToList().Count > 0)
+    {
+        <h3>Drinks</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Room_NO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Date)
+                    </th>
+                    <th>
+                </tr>
+            </thead>
+            @foreach (var model in Model.Services.Where(s => s.Service_Type == "Drinks"))
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Room_NO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Date)
+                        </td>
+                        <td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+
+    @if (Model.Services.Where(s => s.Service_Type == "Foods").ToList().Count > 0)
+    {
+
+        <h3>Foods</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Room_NO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Service_Date)
+                    </th>
+                    <th>
+                </tr>
+            </thead>
+            @foreach (var model in Model.Services.Where(s => s.Service_Type == "Foods"))
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Room_NO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => model.Service_Date)
+                        </td>
+                        <td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+}
+<br />
+<h4>Total Cost :</h4> <strong> @Model.Cost $</strong>
+
+

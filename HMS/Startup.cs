@@ -30,7 +30,7 @@ namespace HMS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<AccountViewModel, AppRole>(options => {
+            services.AddIdentity<Account, AppRole>(options => {
                 options.User.RequireUniqueEmail = true; 
                 options.SignIn.RequireConfirmedAccount = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
@@ -76,7 +76,7 @@ namespace HMS
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<AppRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<AccountViewModel>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<Account>>();
 
             IdentityResult roleResult;
             //here in this line we are adding Admin Role 
@@ -98,7 +98,7 @@ namespace HMS
             var userCheck = await UserManager.FindByEmailAsync("kalilAdmin@gmail.com");
             if (userCheck == null)
             {
-                AccountViewModel userAdmin = new AccountViewModel();
+                Account userAdmin = new Account();
                 userAdmin.UserName = "khalil";
                 userAdmin.Email = "khalilAdmin@gmail.com";
                 userAdmin.Password = "AS";

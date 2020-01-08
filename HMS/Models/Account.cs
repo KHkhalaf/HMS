@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HMS.Models
 {
-    public class AccountViewModel:IdentityUser<int>
+    public class Account:IdentityUser<int>
     {
         [DataType(DataType.Text)]
         [Display(Name = "City")]

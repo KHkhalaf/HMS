@@ -16,8 +16,8 @@ namespace HMS.Controllers
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<AccountViewModel> userMng;
-        public ServicesController(ApplicationDbContext context,UserManager<AccountViewModel> userManager)
+        private readonly UserManager<Account> userMng;
+        public ServicesController(ApplicationDbContext context,UserManager<Account> userManager)
         {
             _context = context;
             userMng = userManager;

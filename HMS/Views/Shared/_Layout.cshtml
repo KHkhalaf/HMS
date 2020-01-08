@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
             <div class="container">
                 <i class="fa fa-hotel fa-3x"></i>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -28,7 +28,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="padding-top:5em">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
