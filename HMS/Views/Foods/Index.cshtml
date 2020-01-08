@@ -21,9 +21,7 @@
                 @Html.DisplayFor(modelItem => item.FoodName)<br />
                 @Html.DisplayFor(modelItem => item.Description)<br />
                 <strong> @Html.DisplayFor(modelItem => item.Price) $</strong><br />
-
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> <strong> | </strong>
-                <a asp-action="Reservation" asp-route-id="@item.Id">Reservation</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
 
                 @if (!User.IsInRole("Customer"))
                 {
