@@ -19,13 +19,14 @@ namespace HMS
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
-
+        public IWebHostEnvironment Env { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,14 +40,25 @@ namespace HMS
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
-            services.AddRazorPages();
+
+            IMvcBuilder builder = services.AddRazorPages();
+            #if DEBUG
+                if (Env.IsDevelopment())
+                {
+                    builder.AddRazorRuntimeCompilation();
+                }
+            #endif
+            services.AddRazorPages(); 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
+
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -63,7 +75,6 @@ namespace HMS
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -95,7 +106,7 @@ namespace HMS
             //here we are assigning the Admin role to the User that we have registered above 
             //Now, we are assinging admin role to this user("Khalil@gmail.com"). When will we run this project then it will
             //be assigned to that user.
-            var userCheck = await UserManager.FindByEmailAsync("kalilAdmin@gmail.com");
+            var userCheck = await UserManager.FindByEmailAsync("khalilAdmin@gmail.com");
             if (userCheck == null)
             {
                 Account userAdmin = new Account();

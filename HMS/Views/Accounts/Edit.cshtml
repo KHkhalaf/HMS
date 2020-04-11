@@ -6,7 +6,6 @@
 
 <h1>Edit</h1>
 
-<h4>Accounts</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,8 +38,8 @@
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-control">
-                <select asp-for="City">
+            <div class="form-group">
+                <select class="form-control" asp-for="City">
                     <option value="Damascus">Damascus</option>
                     <option value="Aleppo">Aleppo</option>
                     <option value="Latakia">Latakia</option>
@@ -56,5 +55,5 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
 </div>

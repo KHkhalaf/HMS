@@ -17,7 +17,7 @@ a {
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills , .nav-pills {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -70,4 +70,53 @@ body {
 }
 .dropdown:hover{
     cursor:pointer;
+}
+.navbar, .dropdown-menu {
+    background-color: #d2d2d2;
+}
+a.nav-link {
+    border-bottom: 2px solid #d2d2d2;
+    font-size:large;
+}
+a.nav-link:hover {
+    border-bottom: 2px solid black;
+}
+.div-service , .div-room {
+    border-radius: 10px;
+    max-width: 340px;
+    max-height: 400px;
+    background-color: #fcfcfc;
+    padding: 5px;
+    margin: 20px 10px;
+}
+.div-room {
+    max-width: 353px;
+    max-height: 415px;
+    padding: 10px;
+}
+.div-service:hover, .div-room:hover {
+    transform: scale(1.05);
+}
+
+.row{
+    justify-content:center;
+}
+
+.img-thumbnail {
+    width: 330px;
+    height: 250px;
+}
+
+.caption {
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 38%;
+    left:1%;
+    z-index: 1;
+    color: black;
+    text-transform: uppercase;
+}
+div, p, h1, h2, h3, h4, h5, h6, a{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

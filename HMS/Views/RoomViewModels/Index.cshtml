@@ -4,37 +4,38 @@
     ViewData["Title"] = "Index";
 }
 
+    <h1>Rooms</h1>
 
 @if (!User.IsInRole("Customer"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="btn btn-info" asp-action="Create">Create New</a>
     </p>
 }
 
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
-            <div style="width:350px; background-color:#fcfcfc; padding:10px; margin-top:20px;">
+        <div class="col-md-4 shadow div-room">
+            <div>
                 <img src="~/images/@Html.DisplayFor(modelItem => item.image)" class="img-thumbnail"
                      style="width:330px;height:250px;" /><br />
                 @Html.DisplayFor(modelItem => item.number)<br />
                 @Html.DisplayFor(modelItem => item.Description)<br />
                 @Html.DisplayFor(modelItem => item.Type)<br />
                 <strong> @Html.DisplayFor(modelItem => item.Charges) $</strong><br />
+                
+                <div class="row p-2">
+                    <a class="m-sm-1 btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="m-sm-1 btn btn-secondary" asp-action="Reservation" asp-route-id="@item.Id">Reservation</a>
 
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> <strong> | </strong>
-                <a asp-action="Reservation" asp-route-id="@item.Id">Reservation</a>
-
-                @if (!User.IsInRole("Customer"))
-                {
-                    <strong> | </strong>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <strong> | </strong>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                }
+                    @if (!User.IsInRole("Customer"))
+                     {
+                        <a class="m-sm-1 btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="m-sm-1 btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                     }
+                </div>
             </div>
-
         </div>
     }
 </div>

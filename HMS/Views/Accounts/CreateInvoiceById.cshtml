@@ -1,9 +1,12 @@
 ﻿@model HMS.Models.InvoiceViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Account> SignInManager
+@inject UserManager<Account> UserManager
 
 @{
     ViewData["Title"] = "CreateInvoiceById";
 }
-<h3>This Invoice for Customer</h3>
+    <h4>This Invoice for the  <strong> @Html.DisplayFor(model => model.Customer.UserName)</strong> Customer</h4>
 <br />
 
 <table class="table">
@@ -43,9 +46,10 @@
     </tbody>
 </table>
 
-@if(@Model.Rooms.Count > 0){
+@if (@Model.Rooms.Count > 0)
+{
     <br />
-    <h3>This is his Reservations of Rooms</h3>
+    <h4>This is his Reservations of Rooms</h4>
     <br />
     <table class="table">
         <thead>

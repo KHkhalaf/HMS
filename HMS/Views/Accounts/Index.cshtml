@@ -7,7 +7,7 @@
     <h1>Staffs</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">Create New</a>
 </p>
 
 <table class="table">
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.City)
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

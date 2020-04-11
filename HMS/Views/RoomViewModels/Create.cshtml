@@ -23,8 +23,8 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-control">
-                <select  asp-for="Type" >
+            <div class="form-group">
+                <select  asp-for="Type" class="form-control">
                     <option value="Single Bed">Select Room Type</option>
                     <option value="Single Bed">Single Bed</option>
                     <option value="Double Bed">Double Bed</option>
@@ -51,7 +51,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

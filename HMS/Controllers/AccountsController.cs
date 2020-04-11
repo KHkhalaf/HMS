@@ -240,7 +240,7 @@ namespace HMS.Controllers
             ViewBag.EmailExist = "This Email is Exist ...";
             return View(Account);
         }
-        [Authorize(Roles ="Customer")]
+        [Authorize(Roles = "Customer, Admin, Staff")]
         // POST: Accounts/Register
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

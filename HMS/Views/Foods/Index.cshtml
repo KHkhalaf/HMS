@@ -7,30 +7,28 @@
 <h1>Foods</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">Create New</a>
 </p>
 
 
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
-            <div style="width:350px; background-color:#fcfcfc; padding:10px; margin-top:20px;">
-                <img src="~/images/@Html.DisplayFor(modelItem => item.image)" class="img-thumbnail"
-                     style="width:330px;height:250px;" /><br />
-                @Html.DisplayFor(modelItem => item.FoodName)<br />
-                @Html.DisplayFor(modelItem => item.Description)<br />
-                <strong> @Html.DisplayFor(modelItem => item.Price) $</strong><br />
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+        <div class="col-md-4 shadow div-service">
+            <img src="~/images/@Html.DisplayFor(modelItem => item.image)" class="img-thumbnail"/>
+            <br />
+            @Html.DisplayFor(modelItem => item.FoodName)<br />
+            @Html.DisplayFor(modelItem => item.Description)<br />
+            <strong> @Html.DisplayFor(modelItem => item.Price) $</strong><br />
 
+            <div class="row p-2">
+                <a class="btn btn-outline-info m-sm-1" asp-action="Details" asp-route-id="@item.Id">Details</a>
                 @if (!User.IsInRole("Customer"))
                 {
-                    <strong> | </strong>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <strong> | </strong>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-outline-secondary m-sm-1" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-danger m-sm-1" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 }
             </div>
-
         </div>
     }
 </div>

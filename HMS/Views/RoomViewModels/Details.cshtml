@@ -7,7 +7,6 @@
 <h1>Details</h1>
 
 <div>
-    <h4>RoomViewModel</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -44,9 +43,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
     @if (!User.IsInRole("Customer"))
     {
-        <strong> | </strong><a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+       <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
     }
 </div>

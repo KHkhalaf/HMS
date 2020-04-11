@@ -6,7 +6,6 @@
 
 <h1>Create</h1>
 
-<h4>AccountViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,8 +31,8 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-control">
-                <select asp-for="City">
+            <div class="form-group">
+                <select class="form-control" asp-for="City">
                     <option value="Damascus">Damascus</option>
                     <option value="Aleppo">Aleppo</option>
                     <option value="Latakia">Latakia</option>
