@@ -8,6 +8,7 @@ Hotel Management System
 ---------------------------------------------------------------
 ![alt text](https://github.com/KHkhalaf/HMS/blob/master/HMS/screenshots/Screenshot_2.png)
 ### Clean Clothes Service
+---------------------------------------------------------------
 ![alt text](https://github.com/KHkhalaf/HMS/blob/master/HMS/screenshots/Screenshot_5.png)
 ### Services Page
 - the manager of hotel can see the services that've added by guests
